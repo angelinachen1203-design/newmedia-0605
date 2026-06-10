@@ -212,3 +212,248 @@ iframe {
     border-radius: 4px;   /* 順便讓影片角落有一點點圓角，比較好看 */
     margin-bottom: 20px;  /* 與下方的距離 */
 }
+/* =========================================
+   🌟 專門給 index.html 第一層首頁用的 CSS
+   ========================================= */
+
+/* 1. 設定整頁連結盒子，要鋪滿螢幕 */
+.landing-page {
+    display: block;
+    width: 100%;
+    height: 100vh; /* 100% 視窗高度 */
+    position: relative;
+    overflow: hidden; /* 防止圖片太大溢出 */
+    cursor: pointer;
+}
+
+/* 2. 設定封面背景圖，要自動裁切滿屏 */
+.landing-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;      /* 自動縮放，完全覆蓋不變形 */
+    background-position: center; /* 圖片對齊中間 */
+    transition: transform 0.5s ease; /* 為了 hover 加的動畫 */
+}
+
+/* 3. 第一層封面背景的滑鼠互動 (微微放大，感覺很有層次) */
+.landing-page:hover .landing-bg {
+    transform: scale(1.05);/* --- 第一層首頁專用 CSS --- */
+
+/* 讓 body 變成一個滑動捕捉的軌道 */
+.scroll-container {
+    overflow-y: scroll;
+    height: 100vh;
+    /* ✨ 關鍵魔法：強制滑動時要對齊區塊邊緣 */
+    scroll-snap-type: y mandatory; 
+}
+
+.landing-page {
+    display: block;
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+    /* ✨ 關鍵魔法：告訴網頁這個區塊的頂部要被「吸附」 */
+    scroll-snap-align: start; 
+}
+
+/* 剩下的 .landing-bg, .landing-content 等等維持剛剛的設定不動... */ /* 微微放大 1.05 倍 */
+}
+
+/* 4. 疊在照片上面的文字區塊，要放在中間 */
+.landing-content {
+    position: absolute;
+    top: 50%; /* 放在高度 50% 的位置 */
+    left: 50%; /* 放在寬度 50% 的位置 */
+    transform: translate(-50%, -50%); /* 這是 CSS 中間對齊的魔法咒語，請背起來 */
+    
+    text-align: center; /* 文字置中 */
+    color: #ffffff; /* 文字變成白色，才看得到 */
+    text-shadow: 0 4px 10px rgba(0, 0, 0, 0.5); /* 幫文字加上黑色陰影，避免背景照片擋住 */
+    z-index: 10; /* 確保文字疊在照片上面 */
+}
+
+/* 5. 封面上的標題樣式 */
+.landing-title {
+    font-size: 3em;     /* 字體變超級大 (3倍大) */
+    font-weight: 700;   /* 字體變粗 */
+    letter-spacing: 0.1em; /* 字跟字之間空遠一點 */
+    margin-bottom: 20px;
+}
+
+/* 6. 封面上的副標題樣式 */
+.landing-subtitle {
+    font-size: 1.2em;
+    font-weight: 300; /* 字體變細 */
+    opacity: 0.9;     /* 稍微有一點透明感 */
+}
+/* =========================================
+   🎨 內頁精緻化排版專用 (Project Pages)
+   ========================================= */
+
+/* 1. 整個作品頁面的容器 */
+.project-container {
+    max-width: 900px; /* 限制寬度，文字才不會太長難閱讀 */
+    margin: 80px auto; /* 上下留白，左右置中 */
+    padding: 0 20px;
+    position: relative;
+    z-index: 10; /* 確保在黃色圓點上方 */
+}
+
+/* 2. 標題與元數據 (年份/媒材) */
+.project-header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.project-title {
+    font-size: 2.5em;
+    font-weight: 700;
+    margin-bottom: 10px;
+    letter-spacing: 0.05em;
+}
+
+.project-meta {
+    font-weight: 300;
+    opacity: 0.6;
+    font-size: 1.1em;
+}
+
+/* 3. 影片區塊 */
+.project-video-section {
+    margin-bottom: 60px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.1); /* 給影片一點高級陰影 */
+}
+
+/* 4. 文字內容 */
+.project-description {
+    line-height: 2;
+    font-size: 1.1em;
+    color: #333;
+    margin-bottom: 80px;
+    text-align: justify; /* 文字左右對齊更專業 */
+}
+
+/* 5. 作品集圖網格 */
+.project-gallery img {
+    width: 100%;
+    margin-bottom: 30px;
+    border-radius: 4px;
+}
+
+/* 6. 返回按鈕樣式 */
+.back-btn {
+    position: fixed;
+    top: 30px;
+    left: 30px;
+    text-decoration: none;
+    color: #000;
+    font-weight: 700;
+    z-index: 100;
+    padding: 10px 20px;
+    background: rgba(255,255,255,0.8); /* 稍微透明白底 */
+    border-radius: 30px;
+    transition: 0.3s;
+}
+
+.back-btn:hover {
+    background: #000;
+    color: #fff;
+}
+/* =========================================
+   🎨 三張並排照片牆 (Trio Grid for work2.html)
+   ========================================= */
+
+/* 1. 設定三張照片的容器 */
+.project-gallery-trio {
+    display: flex;       /* ✨ 開啟 Flexbox 魔法：讓裡面的東西橫著排 */
+    gap: 20px;           /* 圖片之間的間距 */
+    margin-bottom: 30px; /* 整個區塊下方的留白 */
+}
+
+/* 2. 設定裡面那三張圖片的樣子 */
+.project-gallery-trio img {
+    flex: 1;             /* ✨ 平均分配空間：三張圖各佔 1/3 的寬度 */
+    min-width: 0;        /* 避免圖片太寬把寬度撐破 */
+    
+    /* 🌟 精緻化小技巧：統一高度，自動裁切 🌟 */
+    height: 300px;       /* 妳可以依喜好調整這個高度數值 */
+    object-fit: cover;   /* 圖片自動縮放、裁切以填滿盒子，不變形 */
+    
+    /* 其他樣式維持跟大圖一樣 */
+    border-radius: 4px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08); /* 稍微輕一點的陰影 */
+    margin-bottom: 0;    /* 蓋掉原本 .project-gallery img 的 margin */
+}
+/* =========================================
+   💡 修改後的右上角 About 按鈕樣式
+   ========================================= */
+.nav-about-btn {
+    position: absolute;   /* ✨ 關鍵：從 fixed 改成 absolute！它就會乖乖疊在第一張照片上，並跟著它一起滾動 */
+    top: 30px;
+    right: 30px;
+    text-decoration: none;
+    color: #ffffff;
+    font-weight: 700;
+    z-index: 100;      
+    padding: 10px 24px;
+    background: rgba(0, 0, 0, 0.4); /* 半透明黑底 */
+    border-radius: 30px;
+    backdrop-filter: blur(8px);    /* 磨砂玻璃濾鏡 */
+    -webkit-backdrop-filter: blur(8px); 
+    transition: 0.3s ease;
+    letter-spacing: 0.05em;
+}
+
+.nav-about-btn:hover {
+    background: #ffffff;
+    color: #000000;
+    box-shadow: 0 4px 15px rgba(255, 255, 255, 0.3);
+}
+/* =========================================
+   🖼️ 個人頁面 3x2 照片網格 (About Grid)
+   ========================================= */
+
+/* 1. 設定網格容器：3 欄 */
+.about-gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* ✨ 關鍵：強制分成 3 欄 */
+    gap: 20px;                             /* 圖片間距 */
+    margin-top: 60px;
+    margin-bottom: 80px;
+}
+
+/* 2. 設定每一格照片的樣子 */
+.about-grid-item img {
+    width: 100%;
+    aspect-ratio: 1 / 1;      /* ✨ 讓照片變成完美的正方形，非常整齊 */
+    object-fit: cover;        /* 自動裁切填滿，不變形 */
+    
+    border-radius: 4px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.4s ease, filter 0.4s ease;
+    cursor: crosshair;        /* 滑鼠移過去變成十字準星，更有藝術感 */
+    margin-bottom: 0;         /* 抵銷原本 img 的 margin */
+}
+
+/* 3. 滑鼠移過去的互動：微縮小 + 變彩色 (如果妳原本有套灰階的話) */
+.about-grid-item img:hover {
+    transform: scale(0.97);   /* 滑鼠移過去微微縮小，有一種被按下去的感覺 */
+    filter: grayscale(0);     /* 恢復全彩 */
+}
+/* =========================================
+   📝 3x2 照片網格下方的圖說文字
+   ========================================= */
+.about-gallery-caption {
+    text-align: center;      /* 文字置中對齊 */
+    margin-top: -60px;       /* 稍微把字往上拉，靠近照片一點 */
+    margin-bottom: 80px;     /* 下方留白，讓版面呼吸 */
+    font-size: 0.9em;        /* 字體稍微縮小，更有高級感 */
+    color: #888888;          /* 顏色設定為柔和的灰色 */
+    letter-spacing: 0.15em;  /* 字距拉開，這是書籍排版的經典技巧！ */
+    font-weight: 300;        /* 輕盈的細體字 */
+}
